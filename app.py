@@ -2,7 +2,7 @@ from flask import Flask, jsonify, g
 from flask_cors import CORS
 from resources.users import user
 from resources.trips import trip
-# from resources.comments import comment
+from resources.destinations import destination
 import models
 from flask_login import LoginManager
 
@@ -30,9 +30,11 @@ def load_user(user_id):
 
 CORS(trip, origins=['http://localhost:3000'], supports_credentials=True)
 CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(destination, origins=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(trip, url_prefix='/api/v1/trips')
 app.register_blueprint(user, url_prefix='/api/v1/users')
+app.register_blueprint(destination, url_prefix='/api/v1/destinations')
 
 @app.before_request
 def before_request():

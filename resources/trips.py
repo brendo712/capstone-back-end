@@ -61,4 +61,4 @@ def delete_trip(id):
         data={},
         message="Successfully deleted {} trip with id {}".format(num_of_rows_deleted, id),
         status={"code": 200}
-    )    
+    )
