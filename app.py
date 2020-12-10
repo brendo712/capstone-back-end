@@ -1,8 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify, g
 from flask_cors import CORS
 from resources.users import user
 from resources.trips import trip
-from resources.comments import comment
+# from resources.comments import comment
 import models
 from flask_login import LoginManager
 
@@ -28,7 +28,7 @@ def load_user(user_id):
         return None
 
 
-CORS(itinerary, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(trip, origins=['http://localhost:3000'], supports_credentials=True)
 CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(trip, url_prefix='/api/v1/trips')
@@ -55,4 +55,5 @@ def hello(username):
 	return "Hello {}".format(username)
 
 if __name__ == '__main__':
+    models.initialize()
     app.run(debug=DEBUG, port=PORT)

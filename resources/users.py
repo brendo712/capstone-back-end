@@ -28,8 +28,10 @@ def register():
         pw_hash = generate_password_hash(payload['password'])
         created_user = models.User.create(
             username=payload['username'],
-            email=payload['email']
-            password=pw_hash
+            email=payload['email'],
+            password=pw_hash,
+            first_name=payload['first_name'],
+            last_name=payload['last_name']
         )
         created_user_dict = model_to_dict(created_user)
         print(created_user_dict)

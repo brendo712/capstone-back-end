@@ -10,7 +10,7 @@ class User(UserMixin, Model):
     password=CharField()
     first_name=CharField()
     last_name=CharField()
-    join_date= DateTimeField()
+    join_date= DateTimeField(default=datetime.datetime.now)
 
     class Meta:
         database = DATABASE
@@ -31,6 +31,15 @@ class Activity(Model):
         database = DATABASE
 
 
+class Comment(Model):
+    user = ForeignKeyField(User, backref='comments')
+    body = TextField()
+    send_date = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = DATABASE
+
+
 class Trip(Model):
     title=CharField()
     author=ForeignKeyField(User, backref='trips')
@@ -44,17 +53,7 @@ class Trip(Model):
         database = DATABASE
 
 
-class Comment(Model):
-    user = ForeignKeyField(User, backref='comments')
-    trip = ForeignKeyField(Trip, backref='comments')
-    body = TextField()
-    send_date = DateTimeField(default=datetime.datetime.now)
-
-    class Meta:
-        database = DATABASE
-
-
-class Relationship(BaseModel):
+class Relationship(Model):
     from_user=ForeignKeyField(User, backref='relationships')
     to_user=ForeignKeyField(User, backref='related_to')
 
