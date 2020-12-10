@@ -33,11 +33,12 @@ class Activity(Model):
 
 class Trip(Model):
     title=CharField()
+    author=ForeignKeyField(User, backref='trips')
     created_at = DateTimeField(default=datetime.datetime.now)
     destination=ForeignKeyField(Destination, backref='trips')
     activities=ForeignKeyField(Activity, backref='trips')
     comment=ForeignKeyField(Comment, backref='trips')
-    length=IntegerField()
+    trip_length=IntegerField()
 
     class Meta:
         database = DATABASE
