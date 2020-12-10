@@ -20,9 +20,8 @@ def register():
         models.User.get(models.User.email == payload['email'])
         return jsonify(
             data={},
-            message=f"A user with the email {payload['email']} already exists",
-            status=401
-        ), 401
+            status={"code": 401, "message": "A user with that name already exists"}
+        )
 
     except models.DoesNotExist:
         pw_hash = generate_password_hash(payload['password'])
