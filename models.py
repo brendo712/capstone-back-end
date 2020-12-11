@@ -5,7 +5,7 @@ from flask_login import UserMixin
 from playhouse.db_url import connect
 
 if 'ON_HEROKU' in os.environ:
-    DATABASE = connect(0s.environ.get('DATABASE_URL'))
+    DATABASE = connect(os.environ.get('DATABASE_URL'))
 else:
     DATABASE = SqliteDatabase('itinerary.sqlite')
 
