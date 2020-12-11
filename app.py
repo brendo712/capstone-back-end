@@ -29,9 +29,9 @@ def load_user(user_id):
         return None
 
 
-CORS(trip, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(destination, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(trip, origins=['http://localhost:3000', 'https://vanlife-travel-app-front.herokuapp.com'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'https://vanlife-travel-app-front.herokuapp.com'], supports_credentials=True)
+CORS(destination, origins=['http://localhost:3000', 'https://vanlife-travel-app-front.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(trip, url_prefix='/api/v1/trips')
 app.register_blueprint(user, url_prefix='/api/v1/users')
@@ -59,7 +59,7 @@ def hello(username):
 
 if 'ON_HEROKU' in os.environ:
   print('\non heroku!')
-  models.initialize()    
+  models.initialize()
 
 if __name__ == '__main__':
     models.initialize()
