@@ -28,7 +28,8 @@ class Trip(Model):
     title=CharField()
     author=ForeignKeyField(User, backref='trips')
     created_at = DateTimeField(default=datetime.datetime.now)
-    trip_length=IntegerField()
+    trip_length=CharField()
+    image=CharField()
 
     class Meta:
         database = DATABASE

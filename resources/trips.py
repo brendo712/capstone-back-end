@@ -24,7 +24,7 @@ def get_all_trips():
 def create_trips():
     payload = request.get_json()
     print(type(payload), 'payload')
-    trip =models.Trip.create(title=payload['title'], author=current_user.id, trip_length=payload['trip_length'])
+    trip =models.Trip.create(title=payload['title'], author=current_user.id, trip_length=payload['trip_length'], image=payload['image'])
     print(trip.__dict__)
     print(dir(trip))
     print(model_to_dict(trip), 'model_to_dict')
