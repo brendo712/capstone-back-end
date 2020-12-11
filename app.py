@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, g
 from flask_cors import CORS
 from resources.users import user
@@ -55,6 +56,10 @@ def index():
 @app.route('/sayhi/<username>')
 def hello(username):
 	return "Hello {}".format(username)
+
+if 'ON_HEROKU' in os.environ:
+  print('\non heroku!')
+  models.initialize()    
 
 if __name__ == '__main__':
     models.initialize()
